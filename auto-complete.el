@@ -205,8 +205,7 @@
   :type 'string
   :group 'auto-complete)
 
-(defcustom ac-non-trigger-commands
-  '(*table--cell-self-insert-command)
+(defcustom ac-non-trigger-commands  '(*table--cell-self-insert-command)
   "Commands that can't be used as triggers of `auto-complete'."
   :type '(repeat symbol)
   :group 'auto-complete)
@@ -406,8 +405,8 @@ If there is no common part, this will be nil.")
 
     (define-key map [f1] 'ac-help)
     (define-key map [M-f1] 'ac-persist-help)
-    (define-key map (kbd "C-?") 'ac-help)
-    (define-key map (kbd "C-M-?") 'ac-persist-help)
+    (define-key map (kbd "C-h") 'ac-help)
+    (define-key map (kbd "C-M-h") 'ac-persist-help)
 
     (define-key map [C-down] 'ac-quick-help-scroll-down)
     (define-key map [C-up] 'ac-quick-help-scroll-up)
@@ -1283,10 +1282,10 @@ that have been made before in this function."
                  (null this-command))
              (ac-menu-live-p)
              (null ac-quick-help))
-      (setq ac-quick-help
-            (funcall (if (ac-quick-help-use-pos-tip-p)
-                         'ac-pos-tip-show-quick-help
-                       'popup-menu-show-quick-help)
+    (setq ac-quick-help
+          (funcall (if (ac-quick-help-use-pos-tip-p)
+                       'ac-pos-tip-show-quick-help
+                     'popup-menu-show-quick-help)
                      ac-menu nil
                      :point ac-point
                      :height ac-quick-help-height
@@ -1362,6 +1361,7 @@ that have been made before in this function."
               inline-live)
           (setq ac-show-menu t))
       (ac-start))
+
     (when (ac-update-greedy t)
       ;; TODO Not to cause inline completion to be disrupted.
       (if (ac-inline-live-p)
